@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import LoginForm from "./components/LoginForm";
+import LeadsTable from "./components/LeadsTable";
+import ValidationForm from "./components/ValidationForm";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <Router>
+        <div className="header">
+          <img
+            src="https://elogroup.com.br/wp-content/uploads/2021/08/Logo-2.svg"
+            className="logo"
+            alt="elogroup-logo"
+          />
+
+          <div className="navigation">
+            <Link className="nav-link" to="/">
+              Login
+            </Link>
+            <Link className="nav-link" to="/leads">
+              Leads
+            </Link>
+            <Link className="nav-link" to="/newlead">
+              Nova Lead
+            </Link>
+          </div>
+        </div>
+
+        <div className="content">
+          <Switch>
+            <Route path="/leads">
+              <LeadsTable />
+            </Route>
+
+            <Route path="/newlead">
+              <ValidationForm />
+            </Route>
+
+            <Route path="/">
+              <LoginForm />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
